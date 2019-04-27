@@ -2,13 +2,18 @@ Carousel Lite
 ==
 Date   : 2019.04.26
 Author : Koji.Yugeta
-==
+--
+
 
 # Summary
+
   シンプルなカルーセルシステムが利用できるように構築しました。
   jQueryなどのライブラリは一切使わず、同一ページの他のライブラリにも依存しません。
 
+
+
 # Howto
+
 1. HTMLにカルーセルエリアを構築。
   &lt;div class="carousel"&gt;
     &lt;div class="control"&gt;
@@ -27,9 +32,12 @@ Author : Koji.Yugeta
   &lt;/div&gt;
 
 2. ヘッダタグに、carousel.jsをセット
+
+  &lt;link rel="stylesheet" href="carousel.css" /&gt;
   &lt;script type="text/javascript" src="carousel.js"&gt;&lt;/script&gt;
 
 3. ページ下部に、carousel起動コマンドをscriptタグとして記述
+
   &lt;script&gt;
     new $$carousel({
         baseSelector   : ".carousel"
@@ -41,7 +49,10 @@ Author : Koji.Yugeta
     });
   &lt;/script&gt;
 
+
+
 # customize
+
   baseSelector     : 基本となるカルーセルエレメントの親要素
   moveCount        : ボタン移動の際の移動速度（数が増えるほど遅くなる）30 * 30msec
   dragTranslationRate : ドラッグの際にエレメントサイズの何割で次のバナーに移動するかどうかの割合
