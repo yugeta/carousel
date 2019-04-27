@@ -5,8 +5,8 @@ Author : Koji.Yugeta
 ==
 
 # Summary
-シンプルなカルーセルシステムが利用できるように構築しました。
-jQueryなどのライブラリは一切使わず、同一ページの他のライブラリにも依存しません。
+  シンプルなカルーセルシステムが利用できるように構築しました。
+  jQueryなどのライブラリは一切使わず、同一ページの他のライブラリにも依存しません。
 
 # Howto
 1. HTMLにカルーセルエリアを構築。
@@ -42,10 +42,10 @@ jQueryなどのライブラリは一切使わず、同一ページの他のラ�
   &lt;/script&gt;
 
 # customize
-baseSelector     : 基本となるカルーセルエレメントの親要素
-moveCount        : ボタン移動の際の移動速度（数が増えるほど遅くなる）30 * 30msec
-dragTranslationRate : ドラッグの際にエレメントサイズの何割で次のバナーに移動するかどうかの割合
-dragInertiaSpeed : ドラッグした時のバナーの移動時間（数が増えると早くなる）
-autoScroll       : 自動バナー切替の実行フラグ（yes : 自動切替実行 , no : 自動切り替えはしない）
-autoScrollTime   : 自動バナー切替を行なう感覚（msec）
+  baseSelector     : 基本となるカルーセルエレメントの親要素
+  moveCount        : ボタン移動の際の移動速度（数が増えるほど遅くなる）30 * 30msec
+  dragTranslationRate : ドラッグの際にエレメントサイズの何割で次のバナーに移動するかどうかの割合
+  dragInertiaSpeed : ドラッグした時のバナーの移動時間（数が増えると早くなる）
+  autoScroll       : 自動バナー切替の実行フラグ（yes : 自動切替実行 , no : 自動切り替えはしない）
+  autoScrollTime   : 自動バナー切替を行なう感覚（msec）
 
