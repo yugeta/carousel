@@ -10,27 +10,27 @@ jQueryなどのライブラリは一切使わず、同一ページの他のラ�
 
 # Howto
 1. HTMLにカルーセルエリアを構築。
-  <div class="carousel">
-    <div class="control">
-      <div class="button" data-button="prev"></div>
-      <div class="button" data-button="next"></div>
-      <div class="pagenation"></div>
-    </div>
-    <div class="panels">
-      <div style="background-color:orange;color:white;">1</div>
-      <div style="background-color:blue;color:white;">2</div>
-      <div style="background-color:green;color:white;">3</div>
-      <div style="background-color:red;color:white;">4</div>
-      <div style="background-color:purple;color:white;">5</div>
-      <div style="background-color:black;color:white;">6</div>
-    </div>
-  </div>
+  &lt;div class="carousel"&gt;
+    &lt;div class="control"&gt;
+      &lt;div class="button" data-button="prev"&gt;&lt;/div&gt;
+      &lt;div class="button" data-button="next"&gt;&lt;/div&gt;
+      &lt;div class="pagenation"&gt;</div&gt;
+    &lt;/div&gt;
+    &lt;div class="panels"&gt;
+      &lt;div style="background-color:orange;color:white;"&gt;1&lt;/div&gt;
+      &lt;div style="background-color:blue;color:white;"&gt;2&lt;/div&gt;
+      &lt;div style="background-color:green;color:white;"&gt;3&lt;/div&gt;
+      &lt;div style="background-color:red;color:white;"&gt;4&lt;/div&gt;
+      &lt;div style="background-color:purple;color:white;"&gt;5&lt;/div&gt;
+      &lt;div style="background-color:black;color:white;"&gt;6&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 
 2. ヘッダタグに、carousel.jsをセット
-  <script type="text/javascript" src="carousel.js"></script>
+  &lt;script type="text/javascript" src="carousel.js"&gt;&lt;/script&gt;
 
 3. ページ下部に、carousel起動コマンドをscriptタグとして記述
-  <script>
+  &lt;script&gt;
     new $$carousel({
         baseSelector   : ".carousel"
       , moveCount      : 30
@@ -39,7 +39,7 @@ jQueryなどのライブラリは一切使わず、同一ページの他のラ�
       , autoScroll     : true
       , autoScrollTime : 2000
     });
-  </script>
+  &lt;/script&gt;
 
 # customize
 baseSelector     : 基本となるカルーセルエレメントの親要素
