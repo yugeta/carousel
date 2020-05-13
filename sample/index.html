@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale=1.0, maximum-scale=1">
+	<title>Carousel</title>
+	<!-- <link rel="stylesheet" href="carousel.css"/> -->
+  <script type="text/javascript" src="../src/carousel.js"></script>
+  
+  <style>
+    .slide{
+      width:150px;
+      height:240px;
+      margin:auto;
+      border:1px solid black;
+    }
+    .carousel{
+      overflow:visible !important;
+    }
+  </style>
+</head>
+<body>
+  
+<div class="slide">
+  <div style="background-color:orange;color:white;">1</div>
+  <div style="background-color:blue;color:white;">2</div>
+  <div style="background-color:green;color:white;">3</div>
+  <div style="background-color:red;color:white;">4</div>
+  <div style="background-color:purple;color:white;">5</div>
+  <div style="background-color:black;color:white;">6</div>
+  <div style="background-color:black;color:white;">7</div>
+</div>
+
+  <script>
+
+    new $$carousel({
+      target              : ".slide",
+      moveCount           : 30,
+      dragTranslationRate : 0.3,
+      dragInertiaSpeed    : 10,
+      autoScroll          : false,
+      autoScrollTime      : 2000,
+      panelWidthRate      : 50,
+      panelMargin         : 10,
+      html                : ""
+    });
+  </script>
+
+</body>
+</html>
