@@ -1,30 +1,3 @@
-/**
- * Name   : Carousel
- * Since  : 2019.04.25
- * Author : Yugeta Koji
- * 
- * # Nest
- * .carousel
- * ├ .panels
- * │ └  .panel
- * └ control
- *   ├ .button[data-button="prev"]
- *   └ .button[data-button="next"]
- * 
- * # Function
- * button     : click left-right-button
- * drag       : mouse-drag
- * pointer    : click point-link
- * autoScroll : timing
- * 
- * # history
- * ver 0.2 : date - 2020.05.11
- *         : auto-load-css-file
- *         : panel-size-short,margin
- *         : drag,indicator(pagenation)
- * 
- */
-
 ;$$carousel = (function(){
 
   // Options
@@ -47,7 +20,8 @@
   autoScroll          : true,
   autoScrollflg       : {},
   autoScrollTime      : 2000,
-  html                : ""
+  html                : "",
+  loaded              : function(e){}
   };
 
   // ----------
@@ -121,6 +95,8 @@
   var MAIN = function(options){
     this.options = this.setOptions(options);
     if(!this.options.target){return;}
+// console.log(__options);
+// console.log(this.options);
 
     var lib = new LIB();
     switch(document.readyState){
@@ -134,7 +110,7 @@
     var lib = new LIB();
     var base_pathinfo = lib.urlinfo(lib.currentScriptTag);
     this.autoload_css(base_pathinfo);
-    this.autoload_ajax(base_pathinfo);
+    // this.autoload_ajax(base_pathinfo);
     this.setEvent();
   }
 
@@ -153,6 +129,9 @@
     css.href = plugin_css +"?"+ query.join("");
     css.onload = (function(){
       this.setStyleSheets();
+      var lib = new LIB();
+      var base_pathinfo = lib.urlinfo(lib.currentScriptTag);
+      this.autoload_ajax(base_pathinfo);
     }).bind(this);
     base.appendChild(css);
   };
@@ -216,6 +195,11 @@
       onSuccess : (function(html){
         this.set_template(html);
         this.setCarousels();
+
+        if(typeof this.options.loaded !== "undefined"){
+          this.options.loaded();
+        }
+        
       }).bind(this)
     });
   };
@@ -239,7 +223,7 @@
         carousels[i].setAttribute("data-carousel-number" , i);
         this.setAutoScroll_next(carousels[i]);
       }
-      this.setButtons(carousels[i].querySelector(".control"));
+      this.setButtons(carousels[i]);
       var res = this.setPanels(carousels[i]);
       if(!res){continue;}
       this.setPagenations(carousels[i]);
@@ -560,20 +544,32 @@
   MAIN.prototype.dragStart = function(e){
     var target = e.target;
     if(!target){return;}
-    if(new LIB().upperSelector(target,".carousel .control *")){return;}
+    if(!new LIB().upperSelector(target　,　this.options.baseSelector)){return;}
 
     var base = new LIB().upperSelector(target,this.options.baseSelector);
     if(!base){return;}
     var parent = this.getElm_panelParent(base);
     if(!parent){return;}
 
+    var pageX = typeof e.touches === "undefined" ? e.pageX : e.touches[0].pageX;
+
     this.drag = {
       target      : parent,
-      startPos    : e.pageX,
+      startPos    : pageX,
       marginLeft  : Number(getComputedStyle(parent, null).getPropertyValue("margin-left").replace("px",""))
     };
 
     // css-animationを一時停止
+    // 既存座標が直接指定の場合の対処法
+    var ss = this.getStyleSheet();
+    var cssMarginLeft = null;
+    for(var i=0; i<ss.cssRules.length; i++){
+      if(ss.cssRules[i].selectorText === '.carousel .panels[data-animation="1"]'){
+        cssMarginLeft = Number(ss.cssRules[i].style.getPropertyValue("margin-left").replace("px",""));
+        break;
+      }
+    }
+    this.drag.target.style.setProperty("margin-left" , cssMarginLeft +"px" , "");
     this.drag.target.setAttribute("data-animation","0");
 
     // auto-scrollを一時停止
@@ -582,7 +578,8 @@
 
   MAIN.prototype.dragMove = function(e){
     if(!this.drag || !this.drag.target || typeof this.drag.target === "undefined"){return;}
-    var diff = e.pageX - this.drag.startPos;
+    var pageX = typeof e.touches === "undefined" ? e.pageX : e.touches[0].pageX;
+    var diff = pageX - this.drag.startPos;
     var margin = this.drag.marginLeft + diff;
     this.drag.target.style.setProperty("margin-left" , margin + "px" , "");
 
@@ -724,9 +721,9 @@
     if(!panel_target){return;}
     var currentNumber = panel_target.getAttribute("data-number");
     if(!currentNumber){return;}
-    var pagenation_target = base.querySelector(":scope .control .pagenation .point[data-number='"+currentNumber+"']");
+    var pagenation_target = base.querySelector(":scope .pagenation .point[data-number='"+currentNumber+"']");
     if(!pagenation_target){return;}
-    var points = base.querySelectorAll(":scope .control .pagenation .point");
+    var points = base.querySelectorAll(":scope .pagenation .point");
     if(!points || !points.length){return;}
     for(var i=0; i<points.length; i++){
       if(points[i].getAttribute("data-number") === currentNumber){
@@ -827,7 +824,7 @@
   };
   
   MAIN.prototype.autoScrollMotion = function(base){
-    var nextButton = base.querySelector(":scope .control .button[data-button='next']");
+    var nextButton = base.querySelector(":scope .button[data-button='next']");
     if(!nextButton){return;}
     nextButton.click();
 

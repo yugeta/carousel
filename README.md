@@ -75,3 +75,29 @@ Author : Koji.Yugeta
 - start-entをループしないようにする設定
 
 
+# comment
+  Name   : Carousel
+  Since  : 2019.04.25
+  Author : Yugeta Koji
+
+  # Nest
+  .carousel
+  ├ .panels
+  │ └  .panel
+  └ control
+    ├ .button[data-button="prev"]
+    └ .button[data-button="next"]
+
+  # Function
+  button     : click left-right-button
+  drag       : mouse-drag
+  pointer    : click point-link
+  autoScroll : timing
+
+  # history
+  ver 0.2 : date - 2020.05.11
+          : auto-load-css-file
+          : panel-size-short,margin
+          : drag,indicator(pagenation)
+
+
