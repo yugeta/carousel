@@ -10,7 +10,7 @@
   panelMargin         : 0,
   
   moveTarget          : null,
-  moveCount           : 30,
+  // moveCount           : 30,
   dragElement         : null,
   dragTranslationRate : 0.3,
   dragInertiaSpeed    : 10,
@@ -388,7 +388,6 @@
     var inner_left    = Math.floor(base_width/2) - Math.floor(active_width / 2);
     var active_left   = current_panel.offsetLeft;
     var center_pos    = active_left - inner_left + (parent_margin * -1);
-
     return center_pos * -1;
   };
 
