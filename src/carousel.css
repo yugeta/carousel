@@ -38,12 +38,13 @@
   /* opacity:0.5; */
   white-space:nowrap;
   z-index:10;
+
+
 }
 .carousel .panels[data-animation="1"]{
   transition-property: all;
   transition-duration:0.3s;
   transition-timing-function:ease-in-out;
-
 }
 
 .carousel .panels > *{
@@ -63,6 +64,9 @@
 } */
 
 /* Button - prev,next */
+.carousel[data-buttons="off"] .button{
+  display:none !important;
+}
 .carousel .button[data-button="prev"],
 .carousel .button[data-button="next"]{
   position     : absolute;
@@ -96,6 +100,9 @@
 
 
 /* Pagenation */
+.carousel[data-page-point="off"]  .pagenation{
+  display:none;
+}
 .carousel .pagenation{
   position:absolute;
   bottom:4px;
